@@ -1,0 +1,21 @@
+#import python libraries
+import rhinoscriptsyntax as rs 
+
+#Input curve from Rhino Space to be transformed
+base_curve = rs.GetObject('Select a curve', rs.filter.curve)
+
+#Control point to be used both to scale and to rotate
+control_point = (9,4,0)
+
+#Scale controls
+x_scale = 0.95 #X axis scale factor
+y_scale = 0.95 #Y axis scale factor
+z_scale = 0.95 #Z axis scale factor
+scale_control = (x_scale, y_scale, z_scale)
+
+#Rotation controls
+rotation_angle = 15 #in degrees
+
+#Transformations
+scaled_curve = rs.ScaleObject(base_curve, control_point,scale_control , copy = True)
+rotate_curve = rs.RotateObject(scaled_curve, control_point, rotation_angle,axis = None, copy = False)
